@@ -1,0 +1,28 @@
+version: "3.8"
+services:
+  server:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    volumes:
+      - ./backend/:/backend/
+    command: ["/bin/sh", "./run.sh"]
+    stop_signal: SIGINT
+    env_file:
+      - ./backend/.env
+    ports:
+      - 8000:8000
+    depends_on:
+      - database
+
+  database:
+    image: postgres:13-alpine
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    expose:
+      - 5432
+    env_file:
+      - ./backend/.env
+
+volumes:
+  postgres_data: null

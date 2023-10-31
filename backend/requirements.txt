@@ -1,0 +1,10 @@
+fastapi
+uvicorn
+pydantic
+python-multipart
+
+# db
+databases[postgresql]
+SQLAlchemy
+psycopg2-binary 
+alembic
